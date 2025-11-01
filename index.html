@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      text-decoration: none;
+      border: none;
+      outline: none;
+      scroll-behavior: smooth;
+      font-family: "Poppins", sans-serif;
+    }
+
+    html {
+      font-size: 60%;
+      overflow-x: hidden;
+    }
+
+    :root {
+      --bg-color: black;
+      --second-bg: #001005;
+      --text-color: white;
+      --main-color: #00ff51;
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    .header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      padding: 4rem 12%;
+      background-color: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    #menu-icon {
+      font-size: 3.6rem;
+      color: var(--main-color);
+      display: none;
+    }
+
+    .logo {
+      font-size: 3rem;
+      color: var(--text-color);
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.35s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.1);
+    }
+
+    span {
+      color: var(--main-color);
+    }
+
+    .navbar a {
+      color: var(--text-color);
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin-left: 2rem;
+      transition: 0.3s ease;
+    }
+
+    .navbar a:hover {
+      color: var(--main-color);
+      border-bottom: 2px solid var(--main-color);
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 10rem 12%;
+    }
+
+    .home {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15rem;
+    }
+
+    .home-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    .home-content h1 {
+      font-size: 8rem;
+      font-weight: 700;
+      margin-top: 1.5rem;
+      line-height: 1;
+    }
+
+    .home-content h3 {
+      font-size: 4rem;
+      margin: 1rem 0;
+    }
+
+    .home-content p {
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 1.8;
+      max-width: 600px;
+    }
+
+    .social-icons {
+      margin: 2rem 0;
+    }
+
+    .social-icons a {
+      font-size: 2.5rem;
+      color: var(--main-color);
+      margin-left: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: white;
+    }
+
+    .btn-group {
+      margin-top: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      margin-left: 1rem;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--text-color);
+      background-color: var(--main-color);
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: white;
+      color: var(--main-color);
+    }
+
+    .btn-group a:nth-of-type(2) {
+      background-color: black;
+      color: var(--main-color);
+      border: 2px solid var(--main-color);
+      box-shadow: 0 0 25px transparent;
+    }
+
+    .btn-group a:nth-of-type(2):hover {
+      box-shadow: 0 0 25px var(--main-color);
+      background-color: var(--main-color);
+      color: black;
+    }
+
+    .home-img {
+      width: 20vw;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 0 25px var(--main-color);
+      transition: box-shadow 0.4s ease-in-out;
+    }
+
+    .home-img img {
+      width: 100%;
+      border-radius: 50%;
+    }
+
+    .home-img img:hover {
+      box-shadow: 0 0 25px var(--main-color),
+                  0 0 50px var(--main-color),
+                  0 0 100px var(--main-color);
+    }
+
+    .about {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 10%;
+      gap: 50px;
+    }
+
+    .about-img {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 0 40px #00ff66;
+    }
+
+    .about-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-text h1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .about-text h1 span {
+      color: #00ff66;
+    }
+
+    .about-text p {
+       font-size: 1.5rem;
+      line-height: 2;
+      margin-bottom: 25px;
+      color: #ccc;
+    }
+
+    .services-container {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 30px;
+      flex-wrap: nowrap;
+    }
+
+    .service-box {
+      background: #00ff66;
+      padding: 40px 25px;
+      border-radius: 20px;
+      transition: 0.3s;
+      cursor: pointer;
+      color: black;
+      width: 300px;
+      min-height: 250px;
+    }
+    .services h1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+      padding-left: 480px;
+    }
+
+    .service-box .icon {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .service-box h2 {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .service-box p {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #000;
+    }
+
+    .service-box:hover {
+      background: #0d1f0d;
+      color: #00ff66;
+      border: 2px solid #00ff66;
+      transform: translateY(-10px);
+    }
+
+    
+.contact-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+     .contact h1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+      padding-left: 300px;
+    }
+    .contact-form input,
+    .contact-message textarea {
+      width: 100%;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.6rem;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    
+      .contact .btn {
+      width: fit-content;
+      padding: 1rem 3rem;
+      font-size: 1.6rem;
+    }
+  
+
+.contact-socials {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.contact-socials a {
+  font-size: 3rem;
+  color: var(--main-color);
+  margin: 0 1rem;
+  transition: 0.3s ease;
+}
+
+.contact-socials a:hover {
+  color: white;
+}
+
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a href="#home" class="logo">Shayna<span>Anjum</span></a>
+    <i class="bx bx-menu" id="menu-icon"></i>
+    <nav class="navbar">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="home" id="home">
+    <div class="home-content">
+      <h1>Hi, It's <span>Shayna</span></h1>
+      <h3>I'm a <span>GRAPHIC DESIGNER</span></h3>
+      <p>I am a 3rd-year Computer Science & Engineering student passionate about problem-solving and building efficient solutions through programming and software development. Currently, I am strengthening my foundations in C, C++, Data Structures & Algorithms, and web development, while actively applying these concepts through coursework, coding practice, and personal projects.
+</p>
+      <div class="social-icons">
+        <a href="https://github.com/shaynaanjum"><i class="bx bxl-github"></i></a>
+        <a href="https://www.linkedin.com/in/shayna-anjum-5b169430b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="bx bxl-linkedin-square"></i></a>
+       <!-- <a href="#"><i class="bx bxl-instagram"></i></a>
+        <a href="#"><i class="bx bxl-twitter"></i></a>-->
+      </div>
+      <div class="btn-group">
+        <a href="#contact" class="btn">Hire</a>
+        <a href="#contact" class="btn">Contact</a>
+      </div>
+    </div>
+    <div class="home-img">
+      <img src="eid.jpg" alt="Shayna Anjum's profile image" />
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+   <!-- <div class="about-img">
+      <img src="profile.jpg" alt="Profile">
+    </div>-->
+    <div class="about-text">
+      <h1>About <span>Me</span></h1>
+      <p>
+        I am a 3rd-year Computer Science & Engineering student passionate about problem-solving and building efficient solutions through programming and software development. Currently, I am strengthening my foundations in C, C++, Data Structures & Algorithms, and web development, while actively applying these concepts through coursework, coding practice, and personal projects.
+<br>
+What I bring:
+<br>
+-Strong programming skills in C and C++ with hands-on experience in solving problems using Data Structures & Algorithms.
+<br>
+-Understanding of Object-Oriented Programming (OOPs), memory management, and problem-solving techniques.
+<br>
+-Web development basics using HTML & CSS to design responsive and user-friendly interfaces.
+<br>
+-Analytical thinking, debugging, and logical reasoning skills developed through coding challenges and project work.
+<br>
+What I’m looking for:
+<br>
+Opportunities to grow as a Software Development / Programming / Web Development Intern, where I can contribute by writing clean code, optimizing solutions, building simple web applications, and learning from industry mentors.
+<br>
+Next Steps in my Journey:
+<br>
+I am currently building a portfolio of projects (like coding problem solutions, mini C++ applications, and basic web pages) to showcase practical skills. These will soon be highlighted on my LinkedIn Featured section and GitHub.
+      </p>
+   <!--   <a href="#" class="btn"></a>-->
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <h1 class="heading">Services</h1>
+    <div class="services-container">
+      <div class="service-box">
+        <div class="icon"></div>
+        <h2>CANVA <br> </h2>
+        <p> -poster design
+          <br> -logo design
+          <br> -social media posts
+          <br> - presentation layout 
+          <br> - canva website design
+          <br> - Template customization
+          </p>
+      </div>
+          <div class="service-box">
+        <div class="icon">💻</div>
+        <h2>Programming Lagugage<br> </h2>
+        <p> - C/C++
+          <br> - HTML/CSS
+        </p>
+      </div>
+      <div class="service-box">
+        <div class="icon">⚙</div>
+        <h2>Learning in <br> Progress</h2>
+        <p> - Data Structure & Algorithm (C++)
+          <br> - Web Developmentn (JS/React)
+        </p>
+      </div>
+    </div>
+  
+
+
+
+  <section class="contact" id="contact">
+  <h1 class="heading">Contact <span>Me</span></h1>
+
+  <div class="contact-container">
+    <form action="#" class="contact-form">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email" required>
+      <input type="tel" placeholder="Phone Number" required>
+      <input type="text" placeholder="Subject" required>
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+
+    <!-- Social Icons Below Form -->
+    <div class="contact-socials">
+      <a href="https://github.com/shaynaanjum" target="_blank"><i class='bx bxl-github'></i></a>
+      <a href="https://www.linkedin.com/in/shayna-anjum-5b169430b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class='bx bxl-linkedin-square'></i></a>
+      <a href="https://twitter.com/yourusername" target="_blank"><i class='bx bxl-twitter'></i></a>
+    </div>
+  </div>
+</section>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
